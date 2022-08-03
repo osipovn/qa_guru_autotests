@@ -18,12 +18,17 @@ public class TestPracticeForm {
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserSize = "1280x1024";
         Configuration.browser = "chrome";
-        Configuration.headless = true;
+    }
+
+    static void removeAds() {
+        executeJavaScript("$('footer').remove()");
+        executeJavaScript("$('#fixedban').remove()");
     }
 
     @Test
     void fillStandartTest(){
         open("/automation-practice-form");
+        removeAds();
         $("#firstName").setValue("Ivan");
         $("#lastName").setValue("Ivanov");
         $("#userEmail").setValue("ivanov@mail.ru");
