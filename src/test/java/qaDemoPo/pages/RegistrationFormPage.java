@@ -1,6 +1,7 @@
 package qaDemoPo.pages;
 
 import com.codeborne.selenide.SelenideElement;
+import org.jetbrains.annotations.NotNull;
 import qaDemoPo.pages.components.CalendarComponents;
 import qaDemoPo.pages.components.ResultsTableComponents;
 
@@ -66,9 +67,11 @@ public class RegistrationFormPage {
         return this;
     }
 
-    public RegistrationFormPage setHobbies(String value) {
-        $("#subjectsContainer").click();
-        $("#subjectsInput").setValue(value).pressEnter();
+    public RegistrationFormPage setHobbies(String[] value) {
+        for (String s : value) {
+            $("#subjectsContainer").click();
+            $("#subjectsInput").setValue(s).pressEnter();
+        }
 
         return this;
     }

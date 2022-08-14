@@ -4,54 +4,45 @@ import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import qaDemoPo.pages.RegistrationFormPage;
+import static qaDemoPo.tests.TestData.*;
 
-import java.io.File;
-
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.Selenide.$;
 
 public class RegistrationFormWithPageObjectsTests {
     RegistrationFormPage registrationFormPage = new RegistrationFormPage();
 
     @BeforeAll
-    static void browser(){
+    static void browser() {
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserSize = "1280x1024";
         Configuration.browser = "chrome";
     }
 
     @Test
-    void fillStandartTest(){
+    void fillStandartTest() {
         registrationFormPage.openPage()
-                .setFirstName("Ivan")
-                .setLastName("Ivanov")
-                .setUserEmail("ivanov@mail.ru")
-                .setGender("Male")
-                .setUserNumber("9822292034")
-                .setBirthDay("15","June","1991")
-                .setHobbies("Arts")
-                .setHobbies("Math")
-                .setHobbies("Computer Science")
-                .setHobbies("Commerce")
-                .markHobbies(1)
-                .markHobbies(3)
-                .uploadPicture("src/test/resources/uploadFile.png")
-                .setCurrentAddress("Moscow city, Lubyanka str., b. 1")
-                .setStateAndCity("NCR", "Delhi")
+                .setFirstName(firstName)
+                .setLastName(lastName)
+                .setUserEmail(userEmail)
+                .setGender(userGender)
+                .setUserNumber(userNumber)
+                .setBirthDay(birthDay, birthMonth, birthYear)
+                .setHobbies(hobbies)
+                .markHobbies(markHobb)
+                .uploadPicture(uploadPath)
+                .setCurrentAddress(currentAddress)
+                .setStateAndCity(state, city)
                 .clickSubmit();
 
         registrationFormPage.checkResultTableVisible()
-                .checkResult("Student Name", "Ivan Ivanov")
-                .checkResult("Student Email", "ivanov@mail.ru")
-                .checkResult("Gender", "Male")
-                .checkResult("Mobile", "9822292034")
-                .checkResult("Date of Birth", "15 June,1991")
-                .checkResult("Subjects", "Arts, Maths, Computer Science, Commerce")
-                .checkResult("Hobbies", "Sports, Music")
+                .checkResult("Student Name", firstName + " " + lastName)
+                .checkResult("Student Email", userEmail)
+                .checkResult("Gender", userGender)
+                .checkResult("Mobile", userNumber)
+                .checkResult("Date of Birth", birthDay + " " + birthMonth + "," + birthYear)
+                .checkResult("Subjects", hobbies[0] + ", " + hobbies[1] + ", " + hobbies[2] + ", " + hobbies[3])
+                .checkResult("Hobbies", "Sports")
                 .checkResult("Picture", "uploadFile.png")
-                .checkResult("Address", "Moscow city, Lubyanka str., b. 1")
-                .checkResult("State and City", "NCR Delhi");
+                .checkResult("Address", currentAddress)
+                .checkResult("State and City", state + " " + city);
     }
 }
