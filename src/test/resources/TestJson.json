@@ -1,0 +1,11 @@
+{
+  "name": "Ivan",
+  "lastname": "Ivanov",
+  "dateBirth": "20.06.1972",
+  "hobbys": ["Math", "Arts", 69, true],
+  "mother":
+  {
+    "motherName" : "Anastasya",
+    "motherLastname": "Ivanova"
+  }
+}
