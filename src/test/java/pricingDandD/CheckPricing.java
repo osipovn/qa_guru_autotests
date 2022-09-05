@@ -13,6 +13,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 @DisplayName("Тест на открытие страницы Цен на GitHub")
+@Disabled
 public class CheckPricing extends TestBase {
 
     @Test
