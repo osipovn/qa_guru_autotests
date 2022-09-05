@@ -1,9 +1,11 @@
 package paramsTests;
 
+import baseConfig.TestBase;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -15,14 +17,13 @@ import java.util.stream.Stream;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 
-@Disabled
-public class HhWebsiteTest {
+
+@DisplayName("Параметризованные тесты")
+public class HhWebsiteTest extends TestBase {
 
     @BeforeAll
     static void browser(){
         Configuration.baseUrl = "https://hh.ru";
-        Configuration.browserSize = "1280x1024";
-        Configuration.browser = "chrome";
     }
 
     @ValueSource(strings = {"Бухгалтер", "Директор"})

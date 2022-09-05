@@ -3,6 +3,7 @@ package fileParsing;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fileParsing.domain.Person;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -10,6 +11,7 @@ import java.io.InputStream;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+@DisplayName("Тест парсинга JSON")
 public class ParsingJson {
 
     ClassLoader classLoader = ParsingJson.class.getClassLoader();

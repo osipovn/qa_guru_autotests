@@ -3,6 +3,7 @@ package fileParsing;
 import com.codeborne.pdftest.PDF;
 import com.codeborne.xlstest.XLS;
 import com.opencsv.CSVReader;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -16,6 +17,7 @@ import java.util.zip.ZipInputStream;
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.assertj.core.api.Assertions.assertThat;
 
+@DisplayName("Тест парсинга Zip архива")
 public class ParsingZip {
 
     ClassLoader classLoader = ParsingZip.class.getClassLoader();
