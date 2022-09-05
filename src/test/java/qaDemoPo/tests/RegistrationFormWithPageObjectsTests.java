@@ -1,27 +1,32 @@
 package qaDemoPo.tests;
 
+import baseConfig.TestBase;
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import qaDemoPo.pages.RegistrationFormPage;
+
+import static io.qameta.allure.Allure.step;
 import static qaDemoPo.tests.TestData.*;
 
-
-public class RegistrationFormWithPageObjectsTests {
+@DisplayName("Тест формы demoQa, используя PageObject")
+public class RegistrationFormWithPageObjectsTests extends TestBase {
     RegistrationFormPage registrationFormPage = new RegistrationFormPage();
 
     @BeforeAll
     static void browser() {
         Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browserSize = "1280x1024";
-        Configuration.browser = "chrome";
-        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
     }
 
     @Test
+    @DisplayName("Проверка заполнения формы регистрации")
     void fillStandartTest() {
-        registrationFormPage.openPage()
-                .setFirstName(firstName)
+        step("Открытие страницы с формой регистрации", () -> {registrationFormPage.openPage();});
+
+        step("Заполнение формы регистрации", () -> {registrationFormPage.setFirstName(firstName)
                 .setLastName(lastName)
                 .setUserEmail(userEmail)
                 .setGender(userGender)
@@ -32,9 +37,9 @@ public class RegistrationFormWithPageObjectsTests {
                 .uploadPicture(uploadPath)
                 .setCurrentAddress(currentAddress)
                 .setStateAndCity(state, city)
-                .clickSubmit();
+                .clickSubmit();});
 
-        registrationFormPage.checkResultTableVisible()
+        step("Проверка корректности заполнения формы регистрации", () -> {registrationFormPage.checkResultTableVisible()
                 .checkResult("Student Name", firstName + " " + lastName)
                 .checkResult("Student Email", userEmail)
                 .checkResult("Gender", userGender)
@@ -44,6 +49,6 @@ public class RegistrationFormWithPageObjectsTests {
                 .checkResult("Hobbies", "Sports")
                 .checkResult("Picture", "uploadFile.png")
                 .checkResult("Address", currentAddress)
-                .checkResult("State and City", state + " " + city);
+                .checkResult("State and City", state + " " + city);});
     }
 }
