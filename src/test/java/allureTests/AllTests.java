@@ -22,7 +22,9 @@ public class AllTests {
     private static String ISSUE = "#1434";
 
     @BeforeAll
-    static void browser() {
+    static void config() {
+        SelenideLogger.addListener("allure", new AllureSelenide());
+
         Configuration.baseUrl = "https://github.com";
         Configuration.browserSize = "1280x1024";
         Configuration.browser = "chrome";
@@ -31,8 +33,6 @@ public class AllTests {
     @Test
     @DisplayName("Тест без описания шагов")
     public void testIssue() {
-        SelenideLogger.addListener("allure", new AllureSelenide());
-
         open("");
 
         $("input[type='text']").setValue(REPOSITORY).pressEnter();
