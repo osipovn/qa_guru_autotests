@@ -16,7 +16,7 @@ import static com.codeborne.selenide.Selenide.open;
 import static io.qameta.allure.Allure.step;
 
 @DisplayName("Тесты с демонстрацией в Allure")
-public class allTests {
+public class AllTests {
 
     private static String REPOSITORY = "jenkinsci/docker";
     private static String ISSUE = "#1434";
