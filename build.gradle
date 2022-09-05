@@ -1,5 +1,6 @@
 plugins {
     id 'java-library'
+    id 'io.qameta.allure' version '2.10.0'
 }
 
 repositories {
@@ -18,7 +19,8 @@ dependencies {
             'com.codeborne:xls-test:1.4.3',
             'com.opencsv:opencsv:5.6',
             'com.fasterxml.jackson.core:jackson-core:2.13.3',
-            'com.fasterxml.jackson.core:jackson-databind:2.13.3'
+            'com.fasterxml.jackson.core:jackson-databind:2.13.3',
+            'io.qameta.allure:allure-selenide:2.19.0'
     )
 }
 
@@ -28,4 +30,18 @@ test {
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
+}
+
+allure {
+    report {
+        version.set("2.19.0")
+    }
+    adapter { // отвечает за появление папочки build/allure-results
+        aspectjWeaver.set(true) //обработка аннотации @Step
+        frameworks {
+            junit5 { //название фреймворка
+                adapterVersion.set("2.19.0") //версия интеграции фреймворка и Allure
+            }
+        }
+    }
 }

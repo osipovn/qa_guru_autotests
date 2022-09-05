@@ -47,7 +47,7 @@ public class HhWebsiteTest {
     static Stream<Arguments> dataProviderForSberSiteMenuTest() {
         return Stream.of(
                 Arguments.of(Jobs.QA, "Qa engineer", "Тестировщик"),
-                Arguments.of(Jobs.DEVELOPER, "Full Stack Developer", "Разработчик"),
+                Arguments.of(Jobs.DEVELOPER, "Java", "Разработчик"),
                 Arguments.of(Jobs.ANALYST, "Data Analyst", "Бизнес-аналитик")
         );
     }
