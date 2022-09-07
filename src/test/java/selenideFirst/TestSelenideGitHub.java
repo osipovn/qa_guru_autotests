@@ -13,6 +13,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 @DisplayName("Домашнее задание на тест репозитория Selenide")
+@Disabled
 public class TestSelenideGitHub extends TestBase {
 
     @BeforeAll

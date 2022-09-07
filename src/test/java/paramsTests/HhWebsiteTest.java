@@ -19,6 +19,7 @@ import static com.codeborne.selenide.Selenide.*;
 
 
 @DisplayName("Параметризованные тесты")
+@Disabled
 public class HhWebsiteTest extends TestBase {
 
     @BeforeAll
